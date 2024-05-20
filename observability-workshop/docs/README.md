@@ -1,4 +1,4 @@
-# Tars PPR Services Skeleton
+# Services Skeleton
 
 ## Requirements
 
