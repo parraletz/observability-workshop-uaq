@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ppr-tars
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    occtech.io/managed-by: vader
+    github.com/project-slug: occmundial/ppr-tars
+  tags:
+    - docker-compose
+    - skeleton
+    - typescript
+spec:
+  type: skeleton
+  lifecycle: production
+  owner: technology-platform

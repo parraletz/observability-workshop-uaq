@@ -1,0 +1,40 @@
+version: 3.0.0
+
+
+services:
+  tars:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+      - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://o11y:4318/v1/traces
+      - OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=http://o11y:4318/v1/metrics
+      - OTEL_EXPORTER_OTLP_LOGS_ENDPOINT=http://o11y:4318/v1/logs
+      - OTEL_METRICS_EXPORTER=otel
+      - OTEL_TRACES_EXPORTER=otel
+    networks:
+      - tars
+  o11y:
+    image: grafana/otel-lgtm
+    ports:
+      - 3001:3000
+      - 4317:4317
+      - 4318:4318
+    depends_on:
+      - tars
+    networks:
+      - tars
+  locust:
+    image: locustio/locust
+    ports:
+      - 8089:8089
+    volumes:
+      - ./tools/locust:/mnt/locust
+    command: --config /mnt/locust/locust.conf
+    networks:
+      - tars
+
+networks:
+  tars:
+    driver: bridge

@@ -1,0 +1,8 @@
+site_name: ppr-tars
+site_description: Documentation for ppr-tars skeleton
+repo_url: https://github.com/occmundial/ppr-tars
+edit_url: edit/main/docs
+plugins:
+  - techdocs-core
+nav:
+  - Home: README.md
